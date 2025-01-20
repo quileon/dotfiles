@@ -154,9 +154,11 @@ alias la="eza --color=always --group-directories-first --icons -a"  # all files 
 alias ll="eza --color=always --group-directories-first --icons -l"  # long format
 alias lt="eza --color=always --group-directories-first --icons -aT" # tree listing
 alias l.="eza -a | grep -E '^\.'"
+alias editrc="chezmoi edit --apply '$HOME/.zshrc'"
+alias editnv="chezmoi edit --apply '$HOME/.zshenv'"
+
 alias -g cat="batcat --style header --style snip --style changes --style header --paging=never"
 alias -g less="batcat --style header --style snip --style changes --style header --paging=always"
-
 alias -g ..="cd .."
 alias -g grep="grep --color=auto"
 alias -g fgrep="fgrep --color=auto"
@@ -194,7 +196,9 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 # bun completions
-[ -s "/home/quil/.bun/_bun" ] && source "/home/quil/.bun/_bun"
+if [ -s "$HOME/.bun/_bun" ]; then
+  . "$HOME/.bun/_bun"
+fi
 
 # chezmoi
 if [ -f "$HOME/.zsh/completions/chezmoi.zsh" ]; then

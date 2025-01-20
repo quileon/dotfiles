@@ -6,6 +6,7 @@ export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export LIBVIRT_DEFAULT_URI="qemu:///system"
+export EDITOR="/usr/local/bin/nvim"
 
 # Sourcing
 #source /etc/profile.d/google-cloud-cli.sh
@@ -13,7 +14,5 @@ export LIBVIRT_DEFAULT_URI="qemu:///system"
 export GPG_TTY=$(tty)
 export BUN_INSTALL="$HOME/.bun"
 export NEOVIDE_FORK=1
-
-[ -s "/home/quil/.bun/_bun" ] && source "/home/quil/.bun/_bun"
 
 . "$HOME/.cargo/env"
