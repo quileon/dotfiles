@@ -60,11 +60,17 @@ setopt hist_verify            # show command with history expansion to user befo
 # force zsh to show the complete history
 alias history="history 0"
 
-# Starship shell setup
-eval "$(starship init zsh)"
+# Fish-like
+if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  . ~/.zsh/themes/catppuccinn_zsh-syntax-highlighting.zsh
+  . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
-# Zoxide shell setup
-eval "$(zoxide init --cmd cd zsh)"
+if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  # change suggestion color
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+fi
 
 # configure `time` format
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
@@ -93,18 +99,6 @@ if [ -n "$force_color_prompt" ]; then
   else
     color_prompt=
   fi
-fi
-
-# Fish-like
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  . ~/.zsh/themes/catppuccinn_zsh-syntax-highlighting.zsh
-  . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  # change suggestion color
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
 toggle_oneline_prompt(){
@@ -164,14 +158,6 @@ alias -g grep="grep --color=auto"
 alias -g fgrep="fgrep --color=auto"
 alias -g egrep="egrep --color=auto"
 alias -g notepad="xed"
-#alias -g pod="onedrive --confdir='/home/quil/.config/onedrive-personal'"
-#alias -g pods="onedrive --confdir='/home/quil/.config/onedrive-personal' --sync"
-#alias -g logpods="journalctl --user-unit=onedrive -f"
-#alias -g scod="onedrive --confdir='/home/quil/.config/onedrive-school'"
-#alias -g scods="onedrive --confdir='/home/quil/.config/onedrive-school' --sync"
-#alias -g rod="onedrive --confdir='/home/quil/.config/onedrive-random'"
-#alias -g rods="onedrive --confdir='/home/quil/.config/onedrive-random' --sync"
-#alias mount="mount --mkdir --verbose"
 alias wtfis='man'
 alias clear='clear && ghosts'
 
@@ -188,6 +174,7 @@ ghosts() {
   echo -e "${bred}󰊠 ${byellow}󰊠 ${bgreen}󰊠 ${bmagenta}󰊠 ${bblue}󰊠 ${bcyan}󰊠${reset}"
 }
 
+# startup programs
 # fnm
 FNM_PATH="/home/quil/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
@@ -204,3 +191,9 @@ fi
 if [ -f "$HOME/.zsh/completions/chezmoi.zsh" ]; then
   . "$HOME/.zsh/completions/chezmoi.zsh"
 fi
+
+# Starship shell setup
+eval "$(starship init zsh)"
+
+# Zoxide shell setup
+eval "$(zoxide init --cmd cd zsh)"
