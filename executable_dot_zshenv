@@ -1,5 +1,5 @@
 typeset -U path PATH
-path=(~/.local/bin /home/quil/.cargo/bin ~/.bun/bin/ $path)
+path=(~/.local/bin ~/.bun/bin/ /home/quil/.config/flutter/bin/ /home/quil/.spicetify $path)
 export PATH
 
 export XMODIFIERS=@im=ibus
@@ -14,5 +14,3 @@ export EDITOR="/usr/local/bin/nvim"
 export GPG_TTY=$(tty)
 export BUN_INSTALL="$HOME/.bun"
 export NEOVIDE_FORK=1
-
-. "$HOME/.cargo/env"
